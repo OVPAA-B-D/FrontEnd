@@ -446,9 +446,9 @@
                           group="people" 
                           @start="drag=true" 
                           @end="drag=false" 
-                          item-key="id" class=" w-full flex flex-col justify-center gap-y-1">
+                          item-key="id" class=" w-full containerDiv cursor-grab flex flex-col justify-center gap-y-1">
                           <template #item="{element}" class="">
-                          <div class="flex cursor-move text-yellow-150 border-b-2 border-yellow-150 justify-center items-center text-lg h-10 w-ful ">
+                          <div class=" flex text-yellow-150 border-b-2 border-yellow-150 justify-center items-center text-lg h-10 w-ful ">
                             <h1>{{element.name}}</h1>
                             </div>
                           </template>
@@ -487,6 +487,9 @@
 <style scoped>
 .active{
   padding-bottom:3px;
+}
+.containerDiv:active{
+   cursor: -webkit-grabbing; cursor: grabbing;
 }
 </style>
 <script>

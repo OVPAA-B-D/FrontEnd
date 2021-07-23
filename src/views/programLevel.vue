@@ -96,11 +96,11 @@
              gap-y-2 flex flex-col justify-items-start w-2/3  flex-grow  h-full  p-4 ">
                <div class=" flex sticky top-0 space-x-2 items-center">
                    <div class=" cursor-pointer w-4 h-4">
-                   <img src="/icons/icon1_arrow_back.svg">
+                   <router-link to="/home_admin"> <img src="/icons/icon1_arrow_back.svg"></router-link>
                    </div>
                    
-                    <h1 class="sticky top-0 text-blue-150 text-lg cursor-pointer">
-                       <router-link to="/home_admin"> <a class="hover:underline">Infomation Technology</a></router-link >
+                    <h1 class="sticky top-0 font-bold text-blue-150 text-lg ">
+                       Infomation Technology
                    </h1>
                 
                   
@@ -124,8 +124,8 @@
                 
              
           </div>
-            <div v-if="show_details" class="w-1/3  h-full bg-gradient-to-b pl-0.6 rounded-l-xl from-blue-150 to-yellow-150">
-              <div class="bg-gray-100 h-full flex flex-col w-full rounded-xl">
+            <div v-if="show_details" class="w-1/3  h-full bg-gradient-to-b pl-0.6 rounded-md from-blue-150 to-yellow-150">
+              <div class="bg-gray-100 h-full flex flex-col w-full rounded-md">
                 <div class="flex justify-between items-center p-4">
                   <h1 class="font-bold text-yellow-150">
                   {{folder_details[0].folder_name}}
@@ -155,52 +155,92 @@
     </div>
         <!--Add task force-->
            <div v-if=" show_add_Taskforce" class="fixed z-30 flex justify-center bg-gray-200  w-screen   bg-opacity-50  items-center  inset-0">
-             <div class="flex flex-col gap-y-3 w-83 bg-white p-10 shadow-3xl rounded-xl">
-                  <span class="flex items-center justify-between w-full ">
-                    <h1 class=" text-yellow-150 text-lg">Adding Task Force</h1>
-                    <h1 @click="show_add_Taskforce=!show_add_Taskforce" class=" cursor-pointer text-red-150 text-lg">Close</h1>
-                  </span>
-                  <div class="flex items-center gap-4 justify-between flex-wrap">
-                      <span>
+             <div class="flex flex-col gap-y-3 w-83 pb-8 bg-white shadow-3xl rounded-2xl">
+                   <div class="flex justify-between rounded-t-2xl px-10 shadow-3xl items-center h-12  bg-gradient-to-r from-blue-150 via-gray-300  to-yellow-150">
+                  <h1 class="text-xl text-white">Add Taskforce</h1>
+                  <button @click="show_add_Taskforce=!show_add_Taskforce" class=" text-white text-lg ">
+                    Close
+                  </button>
+                 </div>
+                  <div class="flex items-center pt-3 px-10 gap-4 justify-between flex-wrap">
+                      <div>
                         <h1 class="text-blue-150 text-sm">Firstname</h1>
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-11 focus:outline-none cursor-text border-2 border-blue-150"/>
-                      </span>
-                        <span>
+                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        focus:outline-none cursor-text "/>
+                       </div>
+                       </div>
+                        <div>
                         <h1 class="text-blue-150 text-sm">Email</h1>
-                        <input  type="email"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-11 focus:outline-none cursor-text border-2 border-blue-150"/>
-                      </span>
-                      <span>
+                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        focus:outline-none cursor-text "/>
+                       </div>
+                       </div>
+                      <div>
                         <h1 class="text-blue-150 text-sm">Middle name</h1>
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-11 focus:outline-none cursor-text border-2 border-blue-150"/>
-                      </span>
-                      <span>
-                         <select  class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-11 focus:outline-none cursor-pointer border-2 border-blue-150">
-                      <option selected disabled >Select task force role</option>
+                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        focus:outline-none cursor-text "/>
+                       </div>
+                      </div>
+                      <div>
+                        <h1 class="text-blue-150 text-sm">Role</h1>
+                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <select  class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                          <option selected disabled >Select task force role</option>
                       </select>
-                      </span>
-                      <span>
+                      </div>
+                      </div>
+                       <div>
                         <h1 class="text-blue-150 text-sm">Last name</h1>
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-11 focus:outline-none cursor-text border-2 border-blue-150"/>
-                      </span>
-                      <span class="">
-                        <button @click="confirmation=!confirmation" class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-blue-250"> 
+                          <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        focus:outline-none cursor-text "/>
+                       </div>
+                       </div>
+                       <div>
+                        <h1 class="text-blue-150 text-sm">Contact Number</h1>
+                          <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input  type="number"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        focus:outline-none cursor-text "/>
+                       </div>
+                       </div>
+                      <div class="w-full flex gap-x-2 justify-end">
+                        <button v-if="update_button" @click="confirmation=!confirmation,text_modal='add a new Task force'" class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-blue-250"> 
+                       <img src="icons/icon12_add.svg"/>
+                    Add
+                    </button>
+                    <button v-else  class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-gray-400"> 
                     <img src="icons/icon12_add.svg"/>
                     Add
                     </button>
-                       </span>
+                    <button v-if="update_button" class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-gray-400"> 
+                    <span class="material-icons">
+                      refresh 
+                      </span>
+                       Update
+                    </button>
+                    <button @click="confirmation=!confirmation,text_modal='update this field'" v-else class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-blue-150"> 
+                    <span class="material-icons">
+                      refresh 
+                      </span>
+                       Update
+                    </button>
+                       </div>
                   </div>
+                  <div class="flex flex-col px-10">
                   <h1 class="text-lg text-blue-150 font-bold">Task Force</h1>
-                  <div></div>
-                  <div class="overflow-y-auto px-4 h-28 gap-y-4 flex flex-col ">
+                  <div class="overflow-y-auto h-28 gap-y-4 flex flex-col ">
                        <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                            
+                        <div class="flex justify-start gap-x-4 w-3/4 pr-10">
+                            <h1 class="text-sm text-blue-150">Aldrin Lobis</h1>
+                            <h1 class="text-sm text-yellow-150">aldrinlobis@gmail.com</h1>
+                            <h1 class="text-sm text-yellow-150">Internal Accreditor</h1>
+                            <h1 class="text-sm text-yellow-150">09021050501</h1>
                         </div>   
                         <div >                     
-                            <button class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button @click="update_button=!update_button" class=" w-20  text-white border-2 bg-blue-150">Edit</button>
                             <button @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
                         </div>
                         </div>
@@ -243,41 +283,52 @@
                         </div>
                         </div>
                   </div>
+                  </div>
+             </div>
              </div>
              <!--Confimation-->
             <div v-if="confirmation" class="fixed z-30 flex justify-center bg-gray-200  w-screen   bg-opacity-50  items-center  inset-0">
-                 <div class="flex flex-col justify-evenly items-center gap-y-3 py-5 w-80 h-80 bg-white  shadow-3xl rounded-xl">
-                 <img src="icons/icon_confirmation.svg" class="w-16">
-                 <div class="flex flex-col text-center">
-                 <h1 class="text-blue-250 text-xl">You are about to add a Task Force</h1>
-                 <span class="px-16">
-                 <h1 class="text-sm text-blue-250 text-opacity-80">After your confirmation, you can still make changes to the information.</h1>
-                 </span>
-                 </div>
-                  <span class="flex items-center gap-x-3">
-                    <button @click="confirmation=!confirmation" class=" select-none bg-blue-250 rounded-lg text-white w-28 h-10">Confirm</button>
-                    <button @click="confirmation=!confirmation" class="select-none border-2 rounded-lg border-blue-150 text-blue-250  w-28 h-10">Cancel</button>
-                  </span>
+                 <div class=" flex flex-col justify-start relative
+                  gap-y-3  w-23 h-60 bg-white  shadow-3xl rounded-xl">
+                  <div class="bg-blue-150 rounded-t-xl h-10 w-full"></div>
+                  <div class="flex w-full  gap-x-3 pl-10  mt-3 items-center">
+                      <img class="w-16" src="icons/icon_confirmation_blue.svg"/>
+                    <div class="flex flex-col">
+                      <h1 class="text-xl font-bold text-blue-150">You are about to {{text_modal}}</h1>
+                      <h1 class="text-blue-150 ">After your confirmation, you can still make changes to the information.</h1>
+                    </div>
+                  </div>
+                  <div class="flex justify-end absolute right-10 bottom-10">
+                    <div class="flex gap-x-1">
+                      <button @click="confirmation=!confirmation" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
+                      <button @click="confirmation=!confirmation" class="px-1 rounded-md text-blue-150 bg-white border-2 border-blue-150">Cancel</button>
+                    </div>
+                  </div>
                  </div>
            </div>
            <!--Delete-->
            <div v-if="confirmation_deletion" class="fixed z-30 flex justify-center bg-gray-200  w-screen   bg-opacity-50  items-center  inset-0">
-                 <div class="flex flex-col justify-evenly items-center gap-y-3 py-5 w-80 h-80 bg-white  shadow-3xl rounded-xl">
-                 <img src="icons/icon_warning_red.svg" class="w-16">
-                 <div class="flex flex-col text-center">
-                 <h1 class="text-red-150 text-xl">You are about to delete this member</h1>
-                 <span class="px-16">
-                 <h1 class="text-sm text-red-150 text-opacity-80">This action cannot be undone.</h1>
-                 </span>
-                 </div>
-                  <span class="flex items-center gap-x-3">
-                    <button @click="confirmation_deletion=!confirmation_deletion" class=" select-none bg-red-150 rounded-lg text-white w-28 h-10">Confirm</button>
-                    <button @click="confirmation_deletion=!confirmation_deletion" class="select-none border-2 rounded-lg border-red-150 text-red-150  w-28 h-10">Cancel</button>
-                  </span>
+                 <div class=" flex flex-col justify-start relative
+                  gap-y-3  w-23 h-60 bg-white  shadow-3xl rounded-xl">
+                  <div class="bg-red-150 rounded-t-xl h-10 w-full"></div>
+                  <div class="flex w-full  gap-x-3 pl-10  mt-3 items-center">
+                      <img class="w-16" src="icons/icon_warning_red.svg"/>
+                    <div class="flex flex-col">
+                      <h1 class="text-xl font-bold text-red-150">Delete Warning</h1>
+                      <h1 class="text-red-150 text-lg">You are about to delete this member.</h1>
+                      <h1 class="text-red-150 text-lg">This process cannot be undone.</h1>
+                    </div>
+                  </div>
+                  <div class="flex justify-end absolute right-10 bottom-10">
+                    <div class="flex gap-x-1">
+                      <button @click="confirmation_deletion=!confirmation_deletion" class="px-1 rounded-md w-16 border-2 border-red-150  text-white bg-red-150">Confirm</button>
+                      <button @click="confirmation_deletion=!confirmation_deletion" class="px-1 rounded-md w-16 text-red-150 bg-white border-2 border-red-150">Cancel</button>
+                    </div>
+                  </div>
                  </div>
            </div>
            <!----->
-          </div>
+          
           <!----->
           <!----->
 
@@ -302,9 +353,10 @@ Details,
         show_add_Taskforce:false,
         confirmation:false,  
         confirmation_deletion:false,
-
+        update_button:true,
         link_to:'',
         activeBtn:0,
+        text_modal:'',
         index:'',
         items:['first'],
         folder_details:[

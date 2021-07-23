@@ -9,10 +9,18 @@ module.exports = {
       'xl': {'min': '1280px', 'max': '1438px'},
       '2xl': {'min': '1439px'},
     },
+   
+   
     minWidth:{
       '1':'22.5rem'
     },
     extend: {
+      borderRadius:{
+        'md':'5px'
+      },
+      cursor:{
+        'grab':'cursor: -webkit-grab; cursor: grab'
+      },
       backgroundImage: theme => ({
         'dropdown':"url('/icons/icon19.svg')",
        }),

@@ -130,22 +130,22 @@
                 <div class=" items-start flex-row flex flex-wrap relative pl-7 " >
                     <button  @click="btn_enable='off',isActive_function('btn1'),show_default()" :class="{outline: bg_btn ===0 }" class="absolute w-full h-full  inset-0 "></button>
 
-                     <div v-for="folderx in folderArea" :key="folderx.id" class=" relative  text-sm text-blue-250 z-10   w-28 h-auto  text-center justify-center items-center">
+                     <div v-for="folderx in folderArea" :key="folderx.id" class="  relative  text-sm text-blue-250 z-10   w-28 h-auto  text-center justify-center items-center">
                       <button  @click="btn_enable='off',isActive_function('btn1'),show_default()" :class="{outline: bg_btn ===0 }" class="absolute w-full h-full  inset-0 -z-1"></button>
 
-                  <div  class=" flex justify-center w-28 mt-10 hover:border-2 mr-2 border-yellow-150 cursor-pointer">
+                  <div @click="isActive_function(folderx.id)" :class="{outline: activeBtn === folderx.id }" class=" flex flex-col  justify-center w-28  mt-10 hover:bg-gray-200 mr-2 border-yellow-150 cursor-pointer">
                       
-               <router-link :to="linkto"> 
-                 <div @dblclick="linkto='/program_parameter'"
-                  @click="btn_enable='on',index_array(folderx.id),isActive_function(folderx.id),folder_id=folderx.id,rename_folder" :class="{outline: activeBtn === folderx.id }" class="w-full p-2 flex justify-center">
+             
+                 <div @dblclick="routing()"
+                  @click="btn_enable='on',index_array(folderx.id),folder_id=folderx.id,rename_folder"  class="w-full p-2 flex justify-center">
                   <img   class="w-16" :src="folderx.folder_icon">
                   </div>
-              </router-link>
-                  </div>
-                  <span class="flex flex-col   justify-center w-full  ">
+                    <span class="flex flex-col   justify-center w-full">
                     <label :for="folderx.id"><h1 :id="folderx.id">{{folderx.floder_name}}</h1></label>
                     <input  v-model="folderx.floder_name" :id="folderx.id+'x'"  type="text" class="hidden text-center focus:outline-none border-2 border-black h-5"/>
                   </span>
+                  </div>
+                  
                     </div>
                 </div>
                 
@@ -217,7 +217,9 @@
                         <h1 class="text-blue-150 text-sm">Role</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
                         <select  class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                          <option selected disabled >Select task force role</option>
+                          <option selected disabled >Select accreditor's role</option>
+                          <option>Internal accreditor</option>
+                          <option>External accreditor</option>
                       </select>
                       </div>
                       </div>
@@ -259,7 +261,7 @@
                        </div>
                   </div>
                   <div class="flex flex-col px-10">
-                  <h1 class="text-lg text-blue-150 font-bold">Task Force</h1>
+                  <h1 class="text-lg text-blue-150 font-bold">Accreditors</h1>
                   <div class="overflow-y-auto h-28 gap-y-4 flex flex-col ">
                        <div class=" border-b-2 border-yellow-150 flex justify-between">
                         <div class="flex justify-start gap-x-4 w-3/4 pr-10">
@@ -550,6 +552,9 @@ export default {
 
   },
   methods:{
+    routing(){
+      this.$router.push('/program_parameter')
+    },
     show_default(){
          let prev_f=document.getElementById(this.prev_folder_id)
           let prev_n=document.getElementById(this.prev_name_id)

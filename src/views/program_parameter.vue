@@ -95,8 +95,8 @@
           </div>
         </div>
           <div class="flex flex-row h-99 w-fullrounded-xl  p-1 ">
-            <div class="bg-gradient-to-b from-blue-150 to-yellow-150 rounded-xl gap-y-2 flex  justify-items-start  w-full p-0.6 h-full">
-               <div class="bg-white  h-full overflow-auto  w-2/3 flex flex-grow flex-wrap rounded-l-xl pl-4">
+            <div class="bg-gradient-to-b from-blue-150 to-yellow-150 rounded-md gap-y-2 flex  justify-items-start  w-full p-0.5 h-full">
+               <div class="bg-white  h-full overflow-auto  w-2/3 flex flex-grow flex-wrap rounded-md pl-4">
              <div class=" w-full">
                     <div class=" flex py-3 sticky top-1   w-full  bg-white  space-x-2 items-center" style="z-index:0" >
                    <div class=" cursor-pointer w-4-h-4">
@@ -335,8 +335,8 @@
         
                </div>
              <div v-if="show_details" class=" flex w-1/3 h-full rounded-xl bg-white ">
-              <div class=" h-full   flex pl-0.6 rounded-xl flex-grow bg-gradient-to-b from-blue-150 to-yellow-150">
-                  <div class="  overflow-auto pb-3 flex flex-col flex-grow rounded-2xl w-full bg-gray-100 h-full">
+              <div class=" h-full   flex pl-0.5 rounded-md flex-grow bg-gradient-to-b from-blue-150 to-yellow-150">
+                  <div class="  overflow-auto pb-3 flex flex-col flex-grow rounded-md w-full bg-gray-100 h-full">
                         <div class="flex justify-between items-center p-4">
                   <h1 class="font-bold text-yellow-150">
                   Parameter

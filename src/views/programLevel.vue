@@ -91,8 +91,8 @@
             </span>
           </div>
         </div>
-          <div class="flex flex-row h-99  bg-gradient-to-b from-blue-150 to-yellow-150 rounded-xl  p-0.6 ">
-            <div class=" bg-white rounded-l-xl rounded overflow-auto  
+          <div class="flex flex-row h-99  bg-gradient-to-b from-blue-150 to-yellow-150 rounded-md  p-0.5 ">
+            <div class=" bg-white  rounded-md overflow-auto  
              gap-y-2 flex flex-col justify-items-start w-2/3  flex-grow  h-full  p-4 ">
                <div class=" flex sticky top-0 space-x-2 items-center">
                    <div class=" cursor-pointer w-4 h-4">
@@ -108,14 +108,15 @@
                 <div class=" flex-row flex flex-wrap pl-7">
                   
                      <div v-for="folderx in folderArea" :key="folderx.id" class="text-center justify-center items-center">
-                  <div class=" flex flex-col items-center justify-start w-32 h-auto  mt-10  mr-2cursor-pointer">
+                  <div @click="isActive_function(folderx.id)" :class="{active: activeBtn === folderx.id }" 
+                  class=" flex flex-col cursor-pointer items-center hover:bg-gray-200 justify-start w-32 h-auto  mt-10  mr-2cursor-pointer">
                       
-                  <router-link :to="link_to">
-                    <div @click="isActive_function(folderx.id)" :class="{active: activeBtn === folderx.id }" class="p-2 w-full" >
-                       <img @dblclick="link_to='/program_area'" @click="index_array(folderx.id),detailing()"
+                  <div>
+                    <div  @dblclick="routing()"  @click="index_array(folderx.id),detailing()"  class="p-2 w-full" >
+                       <img  
                          :src="folderx.folder_image" class="w-16"/>
                     </div>
-                    </router-link>
+                    </div>
                    <h1 class="text-blue-150">{{folderx.folder_name}}</h1>
                   </div>
                     
@@ -185,10 +186,13 @@
                        </div>
                       </div>
                       <div>
-                        <h1 class="text-blue-150 text-sm">Role</h1>
+                        <h1 class="text-blue-150 text-sm">Member</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
                         <select  class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                          <option selected disabled >Select task force role</option>
+                          <option selected disabled >Task Force member</option>
+                          <option>Member 1</option>
+                          <option>Member 2</option>
+                          <option>Member 3</option>
                       </select>
                       </div>
                       </div>
@@ -438,6 +442,9 @@ Details,
     }
   },
   methods:{
+    routing(){
+        this.$router.push('/program_area')
+    },
      index_array(e){
          this.index=this.folderArea.findIndex(x => x.id===e)
      },

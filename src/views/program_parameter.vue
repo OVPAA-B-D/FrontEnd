@@ -111,8 +111,8 @@
                     </div>
                  </div>
                 <div class=" items-start w-full flex-col flex flex-wrap pl-7">
-                   <div  class="w-full">
-                     <div class="flex flex-shrink items-center p-2 justify-between">
+                   <div  class="w-full flex flex-col gap-y-3 pr-4">
+                     <div class="flex flex-shrink items-center py-2 justify-between">
                        <span class="flex items-baseline gap-x-3">
                         <h1 id="parameterLabel" class=" text-2xl text-blue-150 font-bold">Parameter A</h1>
                         <input type="text" class="focus:outline-none border-2 border-black text-blue-150 pl-3 hidden" id="parameterName" value="Parameter name"/>
@@ -120,19 +120,20 @@
                         <img @click="confirmation_deletion=!confirmation_deletion,text_modal='delete this Parameter'" src="/icons/icon11_delete_red.svg" class="cursor-pointer" />
                         <h1  class="text-green-150">Completed</h1>
                       </span>
-                      <button @click="show_add_benchmark=!show_add_benchmark" class="border-2 flex  px-2   items-center mr-4 border-blue-150 "> 
+                      <button @click="show_add_benchmark=!show_add_benchmark" class="border-2 flex  px-2 
+                        items-center  border-blue-150 "> 
                         <img src="icons/icon12_add_blue.svg" class="w-4 "/>
                         <h1 class="text-blue-150">Add Bechmark</h1></button>
                     </div>
-                    <div class="mr-4">
-                        <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
+                    <div>
+                        <div class=" pl-4 w-full flex gap-x-1 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 id="bench1" class="text-xl text-yellow-150">Benchmark A1</h1>
                             <input type="text" class="focus:outline-none border-2 border-black text-yellow-150 pl-3 hidden"
                              id="bench1_input" value="Benchmark A1"/>
                             <img  src="/icons/icon19yellow.svg" class="cursor-pointer" @click="show_input('bench1','bench1_input')"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-blue-150 ">
                               <img src="/icons/icon10_open_file.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -145,13 +146,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mr-4">
+                    <div >
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark A2</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-blue-150 ">
                               <img src="/icons/icon10_open_file.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -164,13 +165,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mr-4">
+                    <div >
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark A3</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-blue-150 ">
                               <img src="/icons/icon10_open_file.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -188,25 +189,26 @@
                    </div>
                 </div>
                  <div class=" items-start w-full flex-col flex flex-wrap pl-7">
-                   <div  class="w-full ">
-                     <div class="flex items-center p-2 justify-between">
+                   <div  class="w-full flex flex-col gap-y-3 pr-4">
+                     <div class="flex items-center py-2 justify-between">
                        <span class="flex items-baseline gap-x-3">
                         <h1 class=" text-2xl text-blue-150 font-bold">Parameter B</h1>
                         <img src="/icons/icon19_rename_orange.svg"/>
                         <img src="/icons/icon11_delete_red.svg" />
                         <h1  class="text-green-250">Incomplete</h1>
                       </span>
-                     <button @click="show_add_benchmark=!show_add_benchmark" class="border-2 flex  px-2   items-center mr-4 border-blue-150 "> 
+                     <button @click="show_add_benchmark=!show_add_benchmark" class="border-2 flex  px-2   
+                     items-center border-blue-150 "> 
                         <img src="icons/icon12_add_blue.svg" class="w-4"/>
                         <h1 class="text-blue-150">Add Bechmark</h1></button>
                     </div>
-                    <div class="mr-4">
+                    <div >
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark B1</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-blue-150 ">
                               <img src="/icons/icon10_open_file.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -219,13 +221,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mr-4">
+                    <div >
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark B2</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-gray-150 ">
                               <img src="/icons/icon_empty_folder.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -238,13 +240,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mr-4">
+                    <div>
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark B3</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-gray-150 ">
                               <img src="/icons/icon_empty_folder.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -260,25 +262,26 @@
                    </div>
                 </div>
                  <div class=" items-start w-full flex-col flex flex-wrap pl-7">
-                   <div  class="w-full">
-                   <div class="flex items-center p-2 justify-between">
+                   <div  class="w-full flex flex-col pr-4 gap-y-3">
+                   <div class="flex items-center py-2 justify-between">
                        <span class="flex items-baseline gap-x-3">
                         <h1 class=" text-2xl text-blue-150 font-bold">Parameter C</h1>
                         <img src="/icons/icon19_rename_orange.svg"/>
                          <img src="/icons/icon11_delete_red.svg" />
                         <h1  class="text-red-150">No File Found</h1>
                       </span>
-                      <button @click="show_add_benchmark=!show_add_benchmark" class="border-2 flex  px-2   items-center mr-4 border-blue-150 "> 
+                      <button @click="show_add_benchmark=!show_add_benchmark" class="border-2 flex
+                        px-2   items-center border-blue-150 "> 
                         <img src="icons/icon12_add_blue.svg" class="w-4"/>
                         <h1 class="text-blue-150">Add Bechmark</h1></button>
                     </div>
-                    <div class="mr-4">
+                    <div >
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark C1</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-gray-150 ">
                               <img src="/icons/icon_empty_folder.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -291,13 +294,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mr-4">
+                    <div >
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark C2</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-gray-150 ">
                               <img src="/icons/icon_empty_folder.svg" class="w-5 h-5"/>
                                 open file</button>
@@ -310,13 +313,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mr-4">
+                    <div>
                         <div class=" pl-4 w-full flex gap-2 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 class="text-xl text-yellow-150">Benchmark C3</h1>
                             <img src="/icons/icon19yellow.svg"/>
                           </span>
-                            <div class="  flex space-x-3 mb-0.5">
+                            <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-gray-150 ">
                               <img src="/icons/icon_empty_folder.svg" class="w-5 h-5"/>
                                 open file</button>

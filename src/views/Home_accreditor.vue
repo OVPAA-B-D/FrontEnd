@@ -76,14 +76,7 @@
          
          
             </div>
-          <div class="space-x-2  font-normal text-xl flex justify-center items-center p-0.5  pr-2 text-white bg-blue-150 ">
-            <input type="text" placeholder="Search" class="
-            placeholder-blue-150
-             pl-3 text-sm text-gray-150 h-8  focus:outline-none" />
-            <span class="material-icons cursor-pointer">
-              search
-            </span>
-          </div>
+        
         </div>
           <div class="flex flex-row h-99   rounded-xl bg-white p-1 ">
             <div class="overflow-auto bg-gradient-to-b from-blue-150 to-yellow-150 rounded-l-xl gap-y-2 flex flex-col justify-items-start  w-2/3 py-0.6 pl-0.6 h-full">

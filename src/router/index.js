@@ -15,7 +15,7 @@ import Taskforce_members from '../views/taskforce_members.vue'
 import Office_admin from '../views/office_admin.vue'
 import Viewparameter_accreditor from '../views/viewparameter_accreditor.vue'
 import Viewfiles_accreditor from '../views/viewfiles_accreditor.vue'
-
+import Admin_ppp from '../views/admin_ppp.vue'
 
 
 const routes = [
@@ -86,6 +86,11 @@ const routes = [
     path: '/home_accreditor',
     name: 'Home accreditor',
     component: Home_accreditor
+  },
+  {
+    path: '/admin_program_performance_profile',
+    name: 'Survey List',
+    component: Admin_ppp
   },
 
   {

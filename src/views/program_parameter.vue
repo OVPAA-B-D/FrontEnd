@@ -98,7 +98,7 @@
             <div class="bg-gradient-to-b from-blue-150 to-yellow-150 rounded-md gap-y-2 flex  justify-items-start  w-full p-0.5 h-full">
                <div class="bg-white  h-full overflow-auto  w-2/3 flex flex-grow flex-wrap rounded-md pl-4">
              <div class=" w-full">
-                    <div class=" flex py-3 sticky top-1   w-full  bg-white  space-x-2 items-center" style="z-index:0" >
+                    <div class=" flex py-3 sticky top-1   w-full  bg-white  space-x-2 items-center" style="z-index:1" >
                    <div class=" cursor-pointer w-4-h-4">
                    <router-link to="/program_area">
                    <img src="/icons/icon1_arrow_back.svg">
@@ -106,7 +106,7 @@
                    </div>
                    <div class="flex sticky top-0 bg-white justify-start gap-x-2 text-blue-150 text-lg">
                     <router-link to="/home_admin"> <a class="hover:underline cursor-pointer">Infomation Technology</a></router-link>>
-                    <router-link to="/program_level"><a class=" hover:underline">Level 1</a></router-link>>
+                    <router-link to="/program_area"><a class=" hover:underline">Level 1</a></router-link>>
                     <a class="font-bold cursor-default">Area 1</a>
                     </div>
                  </div>
@@ -115,8 +115,14 @@
                      <div class="flex flex-shrink items-center py-2 justify-between">
                        <span class="flex items-baseline gap-x-3">
                         <h1 id="parameterLabel" class=" text-2xl text-blue-150 font-bold">Parameter A</h1>
-                        <input type="text" class="focus:outline-none border-2 border-black text-blue-150 pl-3 hidden" id="parameterName" value="Parameter name"/>
-                        <img  @click="show_input('parameterLabel','parameterName')" src="/icons/icon19_rename_orange.svg" class="cursor-pointer"/>
+                        <input type="text" class="focus:outline-none border-2 border-blue-150 text-blue-150 pl-3 hidden" id="parameterName" value="Parameter name"/>
+                        <img v-if="param_edit" @click="param_edit=!param_edit,show_input('parameterLabel','parameterName')" src="/icons/icon19_rename_orange.svg" class="cursor-pointer"/>
+                        <button v-else @click="param_edit=!param_edit,show_input('parameterLabel','parameterName')"
+                         class=" w-5 text-center
+                          material-icons justify-center  opacity-75 flex  rounded-full
+                           bg-green-150 text-white cursor-pointer text-sm hover:opacity-100 " >
+                           download_done
+                        </button>
                         <img @click="confirmation_deletion=!confirmation_deletion,text_modal='delete this Parameter'" src="/icons/icon11_delete_red.svg" class="cursor-pointer" />
                         <h1  class="text-green-150">Completed</h1>
                       </span>
@@ -129,9 +135,15 @@
                         <div class=" pl-4 w-full flex gap-x-1 flex-row justify-between items-center ">
                           <span class="flex items-baseline">
                             <h1 id="bench1" class="text-xl text-yellow-150">Benchmark A1</h1>
-                            <input type="text" class="focus:outline-none border-2 border-black text-yellow-150 pl-3 hidden"
+                            <input type="text" class="focus:outline-none border-2 border-yellow-150 text-yellow-150 pl-3 hidden"
                              id="bench1_input" value="Benchmark A1"/>
-                            <img  src="/icons/icon19yellow.svg" class="cursor-pointer" @click="show_input('bench1','bench1_input')"/>
+                            <img v-if="bench_edit" src="/icons/icon19yellow.svg" class="cursor-pointer" @click="bench_edit=!bench_edit,show_input('bench1','bench1_input')"/>
+                          <button v-else  @click="bench_edit=!bench_edit,show_input('bench1','bench1_input')"
+                        class=" w-5 text-center ml-2
+                          material-icons justify-center  opacity-75 flex  rounded-full
+                           bg-green-150 text-white cursor-pointer text-sm hover:opacity-100 " >
+                           download_done
+                        </button>
                           </span>
                             <div class="  flex gap-x-1 mb-0.5">
                               <button class="text-white flex items-center gap-x-2 rounded-sm py-1 px-2 bg-blue-150 ">
@@ -381,15 +393,19 @@
                             </button>
                     </div>
                     <div class="flex px-4 space-x-7 justify-start items-center">
-                      <div>
+                      <div >
                         <h1 class="text-blue-150">Parameter</h1>
-                        <div class="w-full h-12 flex rounded-lg justify-center items-center border-blue-150 border-2">
+                        <div class="p-0.5 bg-gradient-to-b from-blue-150 to-yellow-150 rounded-md">
+                        <div class="w-full bg-white h-12 flex rounded-md justify-center items-center ">
                           <h1 class="text-2xl text-blue-150">E</h1>
+                        </div>
                         </div>
                       </div>
                       <div class="w-full">
                       <h1 class="text-blue-150">Label</h1>
-                     <input placeholder="Parameter Description" type="text" class=" pl-3 placeholder-blue-150 rounded-lg w-full text-blue-150 h-12 focus:outline-none border-2 border-blue-150"/>
+                      <div class="p-0.5 bg-gradient-to-b from-blue-150 to-yellow-150 rounded-md">
+                     <input placeholder="Parameter Description" type="text" class=" pl-3 placeholder-blue-150 rounded-md w-full text-blue-150 h-12 focus:outline-none "/>
+                      </div>
                       </div>
                     </div>
                     <div class="w-full px-4 flex justify-end">
@@ -416,8 +432,10 @@
                       
                        <div class="w-full">
                         <h1 class="text-blue-150 ">Label</h1>
-                      <input placeholder="Description of  new benchmark" type="text" class="placeholder-blue-150 border-2 w-full border-blue-150 focus:outline-none text-blue-150 px-2 h-12">
-                         
+                        <div class="bg-gradient-to-b from-blue-150 to-yellow-150 p-0.5 rounded-md ">
+                      <input placeholder="Description of  new benchmark" type="text" class="placeholder-blue-150
+                       w-full rounded-md focus:outline-none text-blue-150 px-2 h-12">
+                         </div>
                       </div>
                     </div>
                     <div class="w-full px-4 flex justify-end">
@@ -531,6 +549,8 @@ export default {
   data(){
     return{
       drag:false,
+      param_edit:true,
+      bench_edit:true,
         component:"Details",
         show_add_parameter:false,
         show_add_benchmark:false,

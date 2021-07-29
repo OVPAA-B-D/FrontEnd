@@ -81,7 +81,7 @@
           flex justify-evenly items-center text-white px-3 text-center">
             <p class="material-icons  text-lg ">add_circle_outline</p> <p>Add</p>
           </button>
-          <button @click="rename_folder" v-if="btn_enable=='on'" class=" bg-green-150  space-x-2
+          <button @click="rename_folder(folder_id,folder_name)" v-if="btn_enable=='on'" class=" bg-green-150  space-x-2
           flex justify-evenly items-center text-white px-3 text-center">
             <p class="material-icons  text-sm ">border_color</p> <p  class="text-sm">Rename</p>
           </button>
@@ -90,7 +90,7 @@
             <p class="material-icons  text-sm ">border_color</p> <p  class="text-sm">Rename</p>
           </button>
           
-          <button v-if="btn_enable=='on'" @click="confirmation_deletion=!confirmation_deletion" class=" bg-red-150   space-x-2
+          <button v-if="btn_enable=='on'" @click="confirmation_deletion=!confirmation_deletion,text_modal='to delete this folder'" class=" bg-red-150   space-x-2
           flex justify-evenly items-center text-white px-3 text-center">
             <p class="material-icons  text-sm ">delete</p> <p class="text-sm">Delete</p>
           </button>
@@ -114,8 +114,8 @@
           </div>
         </div>
           <div class="flex flex-row h-99   rounded-xl bg-white p-1 ">
-            <div class="flex overflow-auto bg-gradient-to-b from-blue-150 to-yellow-150 rounded-xl gap-y-2  justify-items-start  w-full p-0.6 h-full">
-               <div class="flex flex-grow relative flex-col bg-white w-2/3 rounded-l-xl pl-4 h-full">
+            <div class="flex overflow-auto bg-gradient-to-b from-blue-150 to-yellow-150 rounded-md gap-y-2  justify-items-start  w-full p-0.5 h-full">
+               <div class="flex flex-grow relative flex-col bg-white w-2/3 rounded-md pl-4 h-full">
                   <button  @click="btn_enable='off',show_default()" :class="{outline: bg_btn === 0 }" class="absolute border-none w-full h-full  inset-0 "></button>
 
                <div class=" flex sticky w-max top-0 mt-4 space-x-2 items-center">
@@ -127,18 +127,29 @@
                    
                     <a class="font-bold ">Level 1</a></h1>
                </div>
-                <div class=" items-start flex-row flex flex-wrap relative pl-7 " >
-                    <button  @click="btn_enable='off',isActive_function('btn1'),show_default()" :class="{outline: bg_btn ===0 }" class="absolute w-full h-full  inset-0 "></button>
+                <div class=" items-start flex-row  flex flex-wrap relative pl-7 " >
+                 <button  @click="btn_enable='off',isActive1_function('btn1'),show_default()" 
+                      :class="{outline: bg_btn===0 }" class="absolute w-full h-full   inset-0 "></button>
 
+                 <div @click="isActive1_function('btn2'),btn_enable='on',folder_id='pname',folder_name='newpname'" :class="{outline: bg_btn === 'btn2' }" class=" flex flex-col  
+                    justify-center w-28  mt-10 hover:bg-gray-200 mr-2 relative  border-yellow-150 cursor-pointer">                
+                 
+                 <div @dblclick="routing('/admin_program_performance_profile')"
+                  class="w-full p-2  z-20 flex justify-center">
+                  <img   class="w-16" src="icons/icon21.png">
+                  </div>
+                    <span class="flex flex-col text-blue-150 text-center  justify-center w-full">
+                    <label ><h1 id="pname">PPP</h1></label>
+                    <input id="newpname" value="PPP" type="text" class="hidden text-center focus:outline-none border-2 border-black h-5"/>
+                  </span>
+                  </div>
                      <div v-for="folderx in folderArea" :key="folderx.id" class="  relative  text-sm text-blue-250 z-10   w-28 h-auto  text-center justify-center items-center">
-                      <button  @click="btn_enable='off',isActive_function('btn1'),show_default()" :class="{outline: bg_btn ===0 }" class="absolute w-full h-full  inset-0 -z-1"></button>
+                      <button  @click="btn_enable='off',isActive1_function('btn1'),show_default()" 
+                      :class="{outline: bg_btn===0 }" class="absolute w-full h-full  inset-0 -z-1"></button>
 
-                  <div @click="isActive_function(folderx.id)" :class="{outline: activeBtn === folderx.id }" class=" flex flex-col  justify-center w-28  mt-10 hover:bg-gray-200 mr-2 border-yellow-150 cursor-pointer">
-                      
-             
-                 <div @dblclick="routing()"
-                  @click="btn_enable='on',index_array(folderx.id),folder_id=folderx.id,rename_folder"  class="w-full p-2 flex justify-center">
-                  <img   class="w-16" :src="folderx.folder_icon">
+                  <div @click="isActive1_function(folderx.id),btn_enable='on',index_array(folderx.id),folder_id=folderx.id,folder_name=folderx.id+'x',rename_folder" :class="{outline: bg_btn === folderx.id }" class=" flex flex-col  justify-center w-28  mt-10 hover:bg-gray-200 mr-2 border-yellow-150 cursor-pointer">
+                <div @dblclick="routing('/program_parameter')"  class="w-full p-2 flex justify-center">
+                  <img   class="w-16" src="icons/icon15.png">
                   </div>
                     <span class="flex flex-col   justify-center w-full">
                     <label :for="folderx.id"><h1 :id="folderx.id">{{folderx.floder_name}}</h1></label>
@@ -150,8 +161,8 @@
                 </div>
                 
                </div>
-             <div v-if="show_details" class="w-1/3  h-full bg-gradient-to-b pl-0.6 rounded-l-xl from-blue-150 to-yellow-150">
-                  <div class="  overflow-auto pb-3 flex flex-col flex-grow rounded-xl w-full bg-gray-100 h-full">
+             <div v-if="show_details" class="w-1/3  h-full bg-gradient-to-b pl-0.5 rounded-l-md from-blue-150 to-yellow-150">
+                  <div class="  overflow-auto pb-3 flex flex-col flex-grow rounded-md w-full bg-gray-100 h-full">
                         <div class="flex justify-between items-center p-4">
                   <h1 class="font-bold text-yellow-150">
                   folder name
@@ -186,38 +197,40 @@
            <div v-if=" show_add_accre" class="fixed z-30 flex justify-center bg-gray-200  w-screen   bg-opacity-50  items-center  inset-0">
              <div class="flex flex-col gap-y-3 w-83 pb-8 bg-white shadow-3xl rounded-2xl">
                    <div class="flex justify-between rounded-t-2xl px-10 shadow-3xl items-center h-12  bg-gradient-to-r from-blue-150 via-gray-300  to-yellow-150">
-                  <h1 class="text-xl text-white">Add Accreditor</h1>
+                  <h1 v-if="update_button" class="text-xl text-white">Add Accreditor</h1>
+                  <h1 v-else class="text-xl text-white">Editting Information</h1>
                   <button @click="show_add_accre=!show_add_accre" class=" text-white text-lg ">
                     Close
                   </button>
                  </div>
+                 <form @submit.prevent="confirmation=!confirmation">
                   <div class="flex items-center pt-3 px-10 gap-4 justify-between flex-wrap">
                       <div>
                         <h1 class="text-blue-150 text-sm">Firstname</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                         <div>
                         <h1 class="text-blue-150 text-sm">Email</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                       <div>
                         <h1 class="text-blue-150 text-sm">Middle name</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                       </div>
                       <div>
                         <h1 class="text-blue-150 text-sm">Role</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <select  class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                          <option selected disabled >Select accreditor's role</option>
+                        <select required class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                          <option selected disabled value="">Select accreditor's role</option>
                           <option>Internal accreditor</option>
                           <option>External accreditor</option>
                       </select>
@@ -226,33 +239,33 @@
                        <div>
                         <h1 class="text-blue-150 text-sm">Last name</h1>
                           <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                        <div>
                         <h1 class="text-blue-150 text-sm">Contact Number</h1>
                           <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input  type="number"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required type="number"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                       <div class="w-full flex gap-x-2 justify-end">
-                        <button v-if="update_button" @click="confirmation=!confirmation,text_modal='add a new Accreditor'" class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-blue-250"> 
+                        <button v-if="update_button" @click="text_modal='add a new Accreditor'" class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-blue-250"> 
                        <img src="icons/icon12_add.svg"/>
                     Add
                     </button>
-                    <button v-else  class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-gray-400"> 
+                    <button disabled v-else  class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-gray-400"> 
                     <img src="icons/icon12_add.svg"/>
                     Add
                     </button>
-                    <button v-if="update_button" class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-gray-400"> 
+                    <button disabled v-if="update_button" class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-gray-400"> 
                     <span class="material-icons">
                       refresh 
                       </span>
                        Update
                     </button>
-                    <button  @click="confirmation=!confirmation,text_modal='update this field'" v-else class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-blue-150"> 
+                    <button  @click="text_modal='update this field'" v-else class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-blue-150"> 
                     <span class="material-icons">
                       refresh 
                       </span>
@@ -260,6 +273,7 @@
                     </button>
                        </div>
                   </div>
+                  </form>
                   <div class="flex flex-col px-10">
                   <h1 class="text-lg text-blue-150 font-bold">Accreditors</h1>
                   <div class="overflow-y-auto h-28 gap-y-4 flex flex-col ">
@@ -272,7 +286,7 @@
                         </div>   
                         <div >                     
                             <button @click="update_button=!update_button" class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button @click="confirmation_deletion=!confirmation_deletion,text_modal='to delete this member'" class=" w-20  text-white border-2 bg-red-150">Delete</button>
                         </div>
                         </div>
                           
@@ -331,7 +345,7 @@
                   </div>
                   <div class="flex justify-end absolute right-10 bottom-10">
                     <div class="flex gap-x-1">
-                      <button @click="confirmation=!confirmation" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
+                      <button @click="confirmation=!confirmation,update_button=true" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
                       <button @click="confirmation=!confirmation" class="px-1 rounded-md text-blue-150 bg-white border-2 border-blue-150">Cancel</button>
                     </div>
                   </div>
@@ -346,7 +360,7 @@
                       <img class="w-16" src="icons/icon_warning_red.svg"/>
                     <div class="flex flex-col">
                       <h1 class="text-xl font-bold text-red-150">Delete Warning</h1>
-                      <h1 class="text-red-150 text-lg">You are about to delete this member.</h1>
+                      <h1 class="text-red-150 text-lg">You are about to {{text_modal}}.</h1>
                       <h1 class="text-red-150 text-lg">This process cannot be undone.</h1>
                     </div>
                   </div>
@@ -369,7 +383,6 @@
 }
 .outline{
   border:solid 1px;
-
   border-color:#F37123 ;
 }
 
@@ -399,11 +412,13 @@ export default {
         linkto:'',
         index:'',
         folder_id:'',
+        folder_name:'',
         prev_folder_id:'',
         prev_name_id:'',
         show_add_accre:false,
         confirm_accre:false,
         activeBtn:0,
+        
         bg_btn:0,
         status:'',
         owner:'',
@@ -421,21 +436,10 @@ export default {
           }
         ],
      folderArea:[ 
-     {
-       id:1,
-       floder_name:'Program Performance Profile',
-        folder_icon:'/icons/icon21.png',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
+    
       {
        id:2,
        floder_name:'Area 1',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -447,7 +451,6 @@ export default {
      {
        id:3,
         floder_name:'Area 2',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -459,7 +462,6 @@ export default {
      {
         id:4,
         floder_name:'Area 3',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -471,7 +473,6 @@ export default {
      {
         id:5,
         floder_name:'Area 4',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -483,7 +484,6 @@ export default {
      {
         id:6,
         floder_name:'Area 5',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -494,7 +494,6 @@ export default {
     {
         id:7,
         floder_name:'Area 6',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -505,7 +504,6 @@ export default {
     {
         id:8,
         floder_name:'Area 7',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -516,7 +514,6 @@ export default {
      {
         id:9,
         floder_name:'Area 8',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -527,7 +524,6 @@ export default {
      {
         id:10,
         floder_name:'Area 9',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         modified:'July 12,2021',
@@ -538,7 +534,6 @@ export default {
       {
         id:11,
         floder_name:'Area 10',
-        folder_icon:'/icons/icon15.png',
         status:'Pwede na',
         owner:'Juan Tamad',
         location:'/Information/Level',
@@ -552,23 +547,25 @@ export default {
 
   },
   methods:{
-    routing(){
-      this.$router.push('/program_parameter')
+    routing(e){
+      this.$router.push(e)
     },
     show_default(){
          let prev_f=document.getElementById(this.prev_folder_id)
           let prev_n=document.getElementById(this.prev_name_id)
           prev_f.style.display='block'
           prev_n.style.display='none'
+          this.prev_folder_id='',
+          this.prev_name_id=''
     },
-    rename_folder(e){
-        let x=document.getElementById(this.folder_id)
-        let y=document.getElementById(this.folder_id+'x')
+    rename_folder(e,n){
+        let x=document.getElementById(e)
+        let y=document.getElementById(n)
         if(this.prev_folder_id==''){
         x.style.display = "none";
         y.style.display='block'
-        this.prev_folder_id=this.folder_id;
-        this.prev_name_id=this.folder_id+'x';
+        this.prev_folder_id=e;
+        this.prev_name_id=n;
         }
         else{
           let prev_f=document.getElementById(this.prev_folder_id)
@@ -577,8 +574,8 @@ export default {
             y.style.display='block';
             prev_f.style.display='block';
             prev_n.style.display='none';
-            this.prev_folder_id=this.folder_id;
-            this.prev_name_id=this.folder_id+'x';
+            this.prev_folder_id=e;
+            this.prev_name_id=n;
         }
       
     },
@@ -603,6 +600,14 @@ export default {
       }
       else {
         this.activeBtn= el;
+        }
+      },
+       isActive1_function(el){
+       if(el=='btn1'){
+      this.bg_btn= 0;
+      }
+      else {
+        this.bg_btn= el;
         }
       },
   }

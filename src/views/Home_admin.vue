@@ -148,18 +148,20 @@
     </div>   
           <div v-if="show_add" class="fixed  flex justify-center bg-gray-200 z-10 h-max w-screen   bg-opacity-50 overflow-y-auto items-center  inset-0">
               <div class="relative rounded-2xl  flex flex-col shadow-2xl bg-white w-82 pb-8 h-min">
+               <form @submit.prevent="confirmation=!confirmation">
                  <div class="flex justify-between rounded-t-2xl px-4 shadow-3xl items-center h-12  bg-gradient-to-r from-blue-150 via-gray-300  to-yellow-150">
                   <h1 class="text-xl text-white">Add Program</h1>
                   <button @click="show_add=!show_add" class=" text-white text-lg ">
                     Close
                   </button>
                  </div>
-                  <div class="flex gap-5 mt-5 pl-3 flex-wrap">
+                
+                  <div class="flex gap-5 mt-5 justify-center flex-wrap">
                       <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Campus</h1>
                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="selected_campus" class="fill-current   italic text-blue-150 w-74 px-4 rounded-md  h-12 focus:outline-none cursor-pointer ">
-                      <option selected disabled > Select a Campus</option>
+                      <select  id="selected_campus" required class="fill-current   italic text-blue-150 w-74 px-4 rounded-md  h-12 focus:outline-none cursor-pointer ">
+                      <option selected disabled value=""> Select a Campus</option>
                       <option value="Main">Main Campus</option>
                       <option value="East">East Campus</option>
                       <option value="Daraga">Daraga Campus</option>
@@ -173,8 +175,8 @@
                      <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">College</h1>
                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="selected_college" class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                      <option selected disabled >Choose a College</option>
+                      <select  id="selected_college" required class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                      <option selected disabled value="" >Choose a College</option>
                       <option  >College of Science</option>
                       </select>
                       </div>
@@ -182,23 +184,37 @@
                      <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Program</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="selected_program"  class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                      <option selected disabled > Choose a Program</option>
+                      <select  id="selected_program" required class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                      <option selected disabled value="" > Choose a Program</option>
                       <option>Computer Science</option>
                       </select>
                       </div>
                       </div>
                       <div class="flex flex-col">
-                       <h1 class="text-blue-150 text-sm italic">Chairmain</h1>
+                       <h1 class="text-blue-150 text-sm italic">Chairman's firstname</h1>
                       <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input id="chairmans_name" placeholder="Enter the chairman’s name" type="text"
+                        <input  required id="chairmans_name" placeholder="Enter the chairman’s firstname" type="text"
+                          class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
+                      </div>
+                      </div>
+                      <div class="flex flex-col">
+                       <h1 class="text-blue-150 text-sm italic">Chairman's lastname</h1>
+                      <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input id="chairmans_name" placeholder="Enter the chairman’s lastname" type="text"
+                          class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
+                      </div>
+                      </div>
+                      <div class="flex flex-col">
+                       <h1 class="text-blue-150 text-sm italic">Chairman's middlename</h1>
+                      <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input required id="chairmans_name" placeholder="Enter the chairman’s middlename" type="text"
                           class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
                       </div>
                       </div>
                      <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Contact number</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input     id="chairmans_number" placeholder="Chairman’s contact number" type="number"
+                        <input  required id="chairmans_number" placeholder="Chairman’s contact number" type="number"
                           class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
                         </div>
                         </div>
@@ -213,7 +229,7 @@
                       <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Level</h1>
                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="level" class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                      <select id="level" required class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
                       <option selected disabled value="" >Level of accreditation</option>
                       <option>1</option>
                       <option>2</option>
@@ -223,7 +239,9 @@
                       </div>
                       </div>
                   </div>
-                  <div class="flex absolute items-center bottom-8 right-8 gap-x-2">
+                 
+                  <div class="flex justify-end pt-5  pr-5">
+                  <div class="flex self-right items-center  gap-x-2">
                     <div class="flex overflow-hidden w-32   items-end  h-8 border-b-2 border-blue-250">
                       <h1 class="text-yellow-150">File: </h1>
                        <h1 class="text-blue-150">{{image_name}}</h1>
@@ -233,12 +251,14 @@
                     Add Cover
                   </span>
                    </label>
-                  <button @click=" confirmation=!confirmation,text_modal='add a new Program'" class="flex items-center justify-center px-5 gap-2 w-32 h-8 text-white bg-blue-250"> 
+                  <button type="submit" value="Submit"  @click=" text_modal='add a new Program'" class="flex items-center justify-center px-5 gap-2 w-32 h-8 text-white bg-blue-250"> 
                     <img src="icons/icon12_add.svg"/>
                     Add
                   </button>
                   <input type="file" class="hidden" id="program_image" @change="add_image"/>
                   </div>
+                  </div>
+                  </form>
               </div>
               
           </div>
@@ -246,18 +266,20 @@
                 
           <div v-if="show_edit" class="fixed  flex justify-center bg-gray-200 z-10 h-max w-screen   bg-opacity-50 overflow-y-auto items-center  inset-0">
               <div class="relative rounded-2xl  flex flex-col shadow-2xl bg-white w-82 pb-8 h-min">
+                 <form @submit.prevent="confirmation=!confirmation">
                  <div class="flex justify-between rounded-t-2xl px-4 shadow-3xl items-center h-12  bg-gradient-to-r from-blue-150 via-gray-300  to-yellow-150">
-                  <h1 class="text-xl text-white">Edit Program</h1>
+                  <h1 class="text-xl text-white">Add Program</h1>
                   <button @click="show_edit=!show_edit" class=" text-white text-lg ">
                     Close
                   </button>
                  </div>
-                  <div class="flex gap-5 mt-5 pl-3 flex-wrap">
+                
+                  <div class="flex gap-5 mt-5 justify-center flex-wrap">
                       <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Campus</h1>
                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="selected_campus" class="fill-current   italic text-blue-150 w-74 px-4 rounded-md  h-12 focus:outline-none cursor-pointer ">
-                      <option selected disabled > Select a Campus</option>
+                      <select  id="selected_campus" required class="fill-current   italic text-blue-150 w-74 px-4 rounded-md  h-12 focus:outline-none cursor-pointer ">
+                      <option selected disabled value=""> Select a Campus</option>
                       <option value="Main">Main Campus</option>
                       <option value="East">East Campus</option>
                       <option value="Daraga">Daraga Campus</option>
@@ -271,8 +293,8 @@
                      <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">College</h1>
                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="selected_college" class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                      <option selected disabled >Choose a College</option>
+                      <select  id="selected_college" required class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                      <option selected disabled value="" >Choose a College</option>
                       <option  >College of Science</option>
                       </select>
                       </div>
@@ -280,23 +302,37 @@
                      <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Program</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="selected_program"  class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
-                      <option selected disabled > Choose a Program</option>
+                      <select  id="selected_program" required class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                      <option selected disabled value="" > Choose a Program</option>
                       <option>Computer Science</option>
                       </select>
                       </div>
                       </div>
                       <div class="flex flex-col">
-                       <h1 class="text-blue-150 text-sm italic">Chairmain</h1>
+                       <h1 class="text-blue-150 text-sm italic">Chairman's firstname</h1>
                       <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input id="chairmans_name" placeholder="Enter the chairman’s name" type="text"
+                        <input  required id="chairmans_name" placeholder="Enter the chairman’s firstname" type="text"
+                          class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
+                      </div>
+                      </div>
+                      <div class="flex flex-col">
+                       <h1 class="text-blue-150 text-sm italic">Chairman's lastname</h1>
+                      <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input id="chairmans_name" placeholder="Enter the chairman’s lastname" type="text"
+                          class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
+                      </div>
+                      </div>
+                      <div class="flex flex-col">
+                       <h1 class="text-blue-150 text-sm italic">Chairman's middlename</h1>
+                      <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <input required id="chairmans_name" placeholder="Enter the chairman’s middlename" type="text"
                           class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
                       </div>
                       </div>
                      <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Contact number</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input     id="chairmans_number" placeholder="Chairman’s contact number" type="number"
+                        <input  required id="chairmans_number" placeholder="Chairman’s contact number" type="number"
                           class="italic placeholder-blue-150 text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-text "/>
                         </div>
                         </div>
@@ -311,7 +347,7 @@
                       <div class="flex flex-col">
                        <h1 class="text-blue-150 text-sm italic">Level</h1>
                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                      <select id="level" class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                      <select id="level" required class="fill-current italic text-blue-150 w-74 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
                       <option selected disabled value="" >Level of accreditation</option>
                       <option>1</option>
                       <option>2</option>
@@ -321,24 +357,28 @@
                       </div>
                       </div>
                   </div>
-                  <div class="flex absolute  bottom-8 right-8 gap-x-2">
+                 
+                  <div class="flex justify-end pt-5  pr-5">
+                  <div class="flex self-right items-center  gap-x-2">
                     <div class="flex overflow-hidden w-32   items-end  h-8 border-b-2 border-blue-250">
                       <h1 class="text-yellow-150">File: </h1>
                        <h1 class="text-blue-150">{{image_name}}</h1>
                     </div>
-                   <label for="program_image"><span  class="flex items-center select-none cursor-pointer  justify-center  gap-2 border-2 border-blue-150  w-36 h-8 text-blue-250  "> 
+                   <label for="program_image"><span  class="flex items-center select-none cursor-pointer  justify-center  gap-2 border-2 border-blue-150  w-32 h-8 text-blue-250  "> 
                     <img src="icons/icon_change_cover.svg"/>
-                    Change Cover
+                    Add Cover
                   </span>
                    </label>
-                  <button @click="confirmation=!confirmation,text_modal='update this field'" class="flex items-center justify-center px-5 gap-2 w-36 h-8 text-white bg-blue-250"> 
-                     <span class="material-icons ">
-                      refresh 
-                      </span>
+                  <button type="submit" value="Submit"  @click=" text_modal='update this Program'" class="flex items-center justify-center px-5 gap-2 w-32 h-8 text-white bg-blue-250"> 
+                   <span class="material-icons">
+                    autorenew
+                    </span>
                     Update
                   </button>
-                  <input type="file" class="hidden" id="program_image" @change="change_image"/>
+                  <input type="file" class="hidden" id="program_image" @change="add_image"/>
                   </div>
+                  </div>
+                  </form>
               </div>  
           </div>
           <!----->

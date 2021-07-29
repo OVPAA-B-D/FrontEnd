@@ -7,11 +7,21 @@
   <div class="flex font-roboto  pt-16  min-h-screen  ">
     
      <div class="w-22 static   flex  flex-col items-center py-5  space-y-2  bg-blue-150  ">
-      <div class="w-24 flex items-center border-4 border-white justify-center  bg-yellow-150 cursor-pointer mt-10 h-24 rounded-full">
-            <span class="material-icons cursor-poi text-white text-4xl">
+      <div class="w-24 flex relative items-center border-4 overflow-hidden border-white z-10 justify-center  bg-yellow-150 cursor-pointer mt-10 h-24 rounded-full">
+            <img :src="profile_pic" class="absolute h-full z-auto object-cover " />
+            <label for="profile">
+            <span class="material-icons z-50 cursor-pointer text-white text-4xl">
                 add_photo_alternate
             </span>
+            </label>
+            <input type="file" @change="change_profile" id="profile" class="hidden"/>
       </div>
+         <label for="profile" >  
+           <span v-if="profile_pic" class="flex items-center gap-x-1">
+           <img src="/icons/icon14_edit_image.svg" class="w-4 h-4"/>
+           <h1 class="text-white hover:underline cursor-pointer">Change Profile</h1>
+           </span>
+           </label>
       <div class="flex flex-col items-center">
       <h1  class="uppercase text-white text-lg font-bold">Michael Cinco</h1>
       <h1 class="text-sm text-white">(Admin)</h1>
@@ -165,7 +175,7 @@
                     Close
                   </button>
                  </div>
-                 <form @submit.prevent="confirmation=!confirmation">
+                 <form @submit.prevent="confirmation=!confirmation" id="task_force_form">
                   <div class="flex items-center pt-3 px-10 gap-4 justify-between flex-wrap">
                       <div>
                         <h1 class="text-blue-150 text-sm">Firstname</h1>
@@ -213,21 +223,30 @@
                        </div>
                        </div>
                       <div class="w-full flex gap-x-2 justify-end">
-                        <button type="submit" value="Submit" v-if="update_button" @click="text_modal='add a new Task force'" class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-blue-250"> 
+                      <button type="submit" value="Submit" v-if="update_button"
+                       @click="text_modal='add a new Task force'"
+                        class="flex items-center justify-center rounded-md px-5 gap-2  w-24 h-8 text-white bg-blue-250"> 
                        <img src="icons/icon12_add.svg"/>
                     Add
                     </button>
-                    <button v-else  class="flex items-center justify-center px-5 gap-2  w-24 h-8 text-white bg-gray-400"> 
-                    <img src="icons/icon12_add.svg"/>
-                    Add
+                    <button v-else value="Reset" @click="update_button=!update_button,disabling_btn=true,
+                     function_reset()"  class="flex 
+                    items-center justify-center px-5 gap-2 rounded-md 
+                     w-24 h-8 text-white bg-red-150"> 
+                    <span class="material-icons text-lg">
+                    cancel
+                    </span>
+                    Cancel
                     </button>
-                    <button v-if="update_button" class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-gray-400"> 
+                    <button v-if="update_button" class="flex items-center
+                     justify-center rounded-md px-5 gap-2 text-white  w-24 h-8  bg-gray-400"> 
                     <span class="material-icons">
                       refresh 
                       </span>
                        Update
                     </button>
-                    <button type="submit" value="Submit" @click="text_modal='update this field'" v-else class="flex items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-blue-150"> 
+                    <button type="submit" value="Submit" @click="text_modal='update this field'"
+                     v-else class="flex rounded-md items-center justify-center px-5 gap-2 text-white  w-24 h-8  bg-blue-150"> 
                     <span class="material-icons">
                       refresh 
                       </span>
@@ -247,8 +266,12 @@
                             <h1 class="text-sm text-yellow-150">09021050501</h1>
                         </div>   
                         <div >                     
-                            <button @click="update_button=!update_button" class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
+                            
+                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
+                       
                         </div>
                         </div>
                           
@@ -261,8 +284,12 @@
                             
                         </div>   
                         <div >                     
-                            <button class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
+                            
+                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
+                       
                         </div>
                         </div>
                         <div class=" border-b-2 border-yellow-150 flex justify-between">
@@ -270,11 +297,14 @@
                             <h1 class="text-lg text-blue-150">Name</h1>
                             <h1 class="text-lg text-yellow-150">Email</h1>
                             <h1 class="text-lg text-yellow-150">Role</h1>
-                            
                         </div>   
-                        <div >                     
-                            <button class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <div >                     
+                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
+                            
+                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
+                       
                         </div>
                         </div>
                            <div class=" border-b-2 border-yellow-150 flex justify-between">
@@ -285,8 +315,12 @@
                             
                         </div>   
                         <div >                     
-                            <button class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
+                            
+                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
+                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
+                       
                         </div>
                         </div>
                   </div>
@@ -308,7 +342,7 @@
                   </div>
                   <div class="flex justify-end absolute right-10 bottom-10">
                     <div class="flex gap-x-1">
-                      <button @click="confirmation=!confirmation,update_button=true" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
+                      <button @click="confirmation=!confirmation,update_button=true,disabling_btn=true,function_reset()" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
                       <button @click="confirmation=!confirmation" class="px-1 rounded-md text-blue-150 bg-white border-2 border-blue-150">Cancel</button>
                     </div>
                   </div>
@@ -357,6 +391,7 @@ Details,
   },
   data(){
     return{
+        profile_pic:'',
         show_details:false,
         show_add_Taskforce:false,
         confirmation:false,  
@@ -364,6 +399,7 @@ Details,
         update_button:true,
         link_to:'',
         activeBtn:0,
+        disabling_btn:true,
         text_modal:'',
         index:'',
         items:['first'],
@@ -449,8 +485,15 @@ Details,
     routing(){
         this.$router.push('/program_area')
     },
+    change_profile(e){
+       const file=e.target.files[0]
+        this.profile_pic=URL.createObjectURL(file);
+    },
      index_array(e){
          this.index=this.folderArea.findIndex(x => x.id===e)
+     },
+     function_reset(){
+       document.getElementById('task_force_form').reset();
      },
      detailing(){ 
        this.folder_details[0].folder_name=this.folderArea[this.index].folder_name

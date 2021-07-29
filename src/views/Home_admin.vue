@@ -9,11 +9,25 @@
   <div class="flex font-roboto -z-1  pt-16  min-h-screen  ">
      
      <div class="w-22 static   flex  flex-col items-center py-5  space-y-2  bg-blue-150  ">
-      <div class="w-24 flex items-center border-4 border-white justify-center  bg-yellow-150 cursor-pointer mt-10 h-24 rounded-full">
-            <span class="material-icons cursor-pointer text-white text-4xl">
+      <div class="w-24 flex relative items-center border-4 overflow-hidden border-white  justify-center  bg-yellow-150 cursor-pointer mt-10 h-24 rounded-full">
+           
+               
+            <img :src="profile_pic" class="absolute h-full z-auto object-cover " />
+               
+            <label for="profile">
+            <span class="material-icons z-50 cursor-pointer text-white text-4xl">
                 add_photo_alternate
             </span>
+            </label>
+            <input type="file" @change="change_profile" id="profile" class="hidden"/>
+           
       </div>
+       <label for="profile" >  
+           <span v-if="profile_pic" class="flex items-center gap-x-1">
+           <img src="/icons/icon14_edit_image.svg" class="w-4 h-4"/>
+           <h1 class="text-white hover:underline cursor-pointer">Change Profile</h1>
+           </span>
+           </label>
       <div class="flex flex-col items-center">
       <h1  class="uppercase text-white text-lg font-bold">Michael Cinco</h1>
       <h1 class="text-sm text-white">(Admin)</h1>
@@ -268,7 +282,7 @@
               <div class="relative rounded-2xl  flex flex-col shadow-2xl bg-white w-82 pb-8 h-min">
                  <form @submit.prevent="confirmation=!confirmation">
                  <div class="flex justify-between rounded-t-2xl px-4 shadow-3xl items-center h-12  bg-gradient-to-r from-blue-150 via-gray-300  to-yellow-150">
-                  <h1 class="text-xl text-white">Add Program</h1>
+                  <h1 class="text-xl text-white">Edit Program</h1>
                   <button @click="show_edit=!show_edit" class=" text-white text-lg ">
                     Close
                   </button>
@@ -501,6 +515,7 @@ export default {
       program_image:'img/default_cover_image.jpg',
       id_array:'0',
       idn:0,
+      profile_pic:'',
       index:0,
       filtered_program:[],
       program:[
@@ -573,6 +588,10 @@ export default {
          return this.filtered_program=this.program
         }
         this.filtered_program= this.program.filter(trans=>trans.Campus==x)
+    },
+    change_profile(e){
+       const file=e.target.files[0]
+        this.profile_pic=URL.createObjectURL(file);
     },
     add_image(e){
         const file=e.target.files[0]

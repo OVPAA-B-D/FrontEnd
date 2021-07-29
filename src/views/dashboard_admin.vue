@@ -1,5 +1,5 @@
 <template>
-   <nav class=" py-4 shadow-lg  bg-white fixed w-full" style="z-index:1">
+   <nav class=" py-4 shadow-lg  bg-white fixed w-full" style="z-index:40">
     <div class="w-80">
     <img class="w-full  h-full" src="BUlogo.png">
     </div>
@@ -8,11 +8,25 @@
  
   <div class="flex font-roboto -z-1  pt-16  min-h-screen  ">
       <div class="w-22 static   flex  flex-col items-center py-5  space-y-2  bg-blue-150  ">
-      <div class="w-24 flex items-center border-4 border-white justify-center  bg-yellow-150 cursor-pointer mt-10 h-24 rounded-full">
-            <span class="material-icons cursor-poi text-white text-4xl">
+     <div class="w-24 flex relative items-center border-4 overflow-hidden border-white  justify-center  bg-yellow-150 cursor-pointer mt-10 h-24 rounded-full">
+           
+               
+            <img :src="profile_pic" class="absolute h-full z-auto object-cover " />
+               
+            <label for="profile">
+            <span class="material-icons z-50 cursor-pointer text-white text-4xl">
                 add_photo_alternate
             </span>
+            </label>
+            <input type="file" @change="change_profile" id="profile" class="hidden"/>
+           
       </div>
+       <label for="profile" >  
+           <span v-if="profile_pic" class="flex items-center gap-x-1">
+           <img src="/icons/icon14_edit_image.svg" class="w-4 h-4"/>
+           <h1 class="text-white hover:underline cursor-pointer">Change Profile</h1>
+           </span>
+           </label>
       <div class="flex flex-col items-center">
       <h1  class="uppercase text-white text-lg font-bold">Michael Cinco</h1>
       <h1 class="text-sm text-white">(Admin)</h1>
@@ -155,11 +169,15 @@
 export default {
   data(){
     return{
+        profile_pic:'',
     }
 
   },
    methods:{
-    
+    change_profile(e){
+       const file=e.target.files[0]
+        this.profile_pic=URL.createObjectURL(file);
+    },
     }
 }
 </script>

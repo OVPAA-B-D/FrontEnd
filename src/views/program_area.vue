@@ -219,21 +219,21 @@
                       <div>
                         <h1 class="text-blue-150 text-sm">Firstname</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input :value="fname" required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                         <div>
                         <h1 class="text-blue-150 text-sm">Email</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="email"  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                       <div>
                         <h1 class="text-blue-150 text-sm">Middle name</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="mname"  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                       </div>
@@ -247,17 +247,27 @@
                       </select>
                       </div>
                       </div>
+                      <div>
+                        <h1 class="text-blue-150 text-sm">AREA</h1>
+                        <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
+                        <select required class="fill-current italic text-blue-150 w-75 px-4 rounded-sm  h-12 focus:outline-none cursor-pointer">
+                          <option selected disabled value="">Assign an Area</option>
+                          <option>Internal accreditor</option>
+                          <option>External accreditor</option>
+                      </select>
+                      </div>
+                      </div>
                        <div>
                         <h1 class="text-blue-150 text-sm">Last name</h1>
                           <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="lname"  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                        <div>
                         <h1 class="text-blue-150 text-sm">Contact Number</h1>
                           <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required type="number"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="cnumber" type="number"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
@@ -292,16 +302,16 @@
                   </form>
                   <div class="flex flex-col px-10">
                   <h1 class="text-lg text-blue-150 font-bold">Accreditors</h1>
-                  <div class="overflow-y-auto h-28 gap-y-4 flex flex-col ">
-                       <div class=" border-b-2 border-yellow-150 flex justify-between">
+                  <div  class="overflow-y-auto h-28 gap-y-4 flex flex-col ">
+                       <div v-for="accreditorx in accreditors" :key="accreditorx.id" class=" border-b-2 border-yellow-150 flex justify-between">
                         <div class="flex justify-start gap-x-4 w-3/4 pr-10">
-                            <h1 class="text-sm text-blue-150">Aldrin Lobis</h1>
-                            <h1 class="text-sm text-yellow-150">aldrinlobis@gmail.com</h1>
-                            <h1 class="text-sm text-yellow-150">Internal Accreditor</h1>
-                            <h1 class="text-sm text-yellow-150">09021050501</h1>
+                            <h1 class="text-lg text-blue-150">{{accreditorx.firstName}} {{accreditorx.lastName}}</h1>
+                            <h1 class="text-lg text-yellow-150">{{accreditorx.accreditorEmail}}</h1>
+                            <h1 class="text-lg text-yellow-150">{{accreditorx.roleDescription}}</h1>
+                            <h1 class="text-lg text-yellow-150">{{accreditorx.contactNumber}}</h1>
                         </div>   
                          <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button  v-if="disabling_btn" @click="edit_update(accreditorx.id),update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
                             <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
                             
                             <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
@@ -309,56 +319,7 @@
                        
                         </div>
                         </div>
-                          
-                        
-                         <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                            
-                        </div>   
-                         <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
-                            
-                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
-                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
                        
-                        </div>
-                        </div>
-                        <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                            
-                        </div>   
-                         <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
-                            
-                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
-                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
-                       
-                        </div>
-                        </div>
-                           <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                            
-                        </div>   
-                         <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
-                            
-                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
-                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
-                       
-                        </div>
-                        </div>
                   </div>
                   </div>
              </div>
@@ -378,7 +339,7 @@
                   </div>
                   <div class="flex justify-end absolute right-10 bottom-10">
                     <div class="flex gap-x-1">
-                      <button @click="confirmation=!confirmation,update_button=true,function_reset()" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
+                      <button @click="confirmation=!confirmation,update_button=true,disabling_btn=true,function_reset()" class="px-1 rounded-md border-2 border-blue-150  text-white bg-blue-150">Confirm</button>
                       <button @click="confirmation=!confirmation" class="px-1 rounded-md text-blue-150 bg-white border-2 border-blue-150">Cancel</button>
                     </div>
                   </div>
@@ -449,6 +410,11 @@ export default {
         index:'',
         folder_id:'',
         folder_name:'',
+        fname:'',
+        lname:'',
+        mname:'',
+        email:'',
+        cnumber:'',
         prev_folder_id:'',
         prev_name_id:'',
         show_add_accre:false,
@@ -471,123 +437,47 @@ export default {
             created:'Admin',
           }
         ],
-     folderArea:[ 
-    
-      {
-       id:2,
-       floder_name:'Area 1',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-     
-     {
-       id:3,
-        floder_name:'Area 2',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-     
-     {
-        id:4,
-        floder_name:'Area 3',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-     
-     {
-        id:5,
-        floder_name:'Area 4',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-     
-     {
-        id:6,
-        floder_name:'Area 5',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-    {
-        id:7,
-        floder_name:'Area 6',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-    {
-        id:8,
-        floder_name:'Area 7',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     }, 
-     {
-        id:9,
-        floder_name:'Area 8',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-     {
-        id:10,
-        floder_name:'Area 9',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        modified:'July 12,2021',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-     },
-      {
-        id:11,
-        floder_name:'Area 10',
-        status:'Pwede na',
-        owner:'Juan Tamad',
-        location:'/Information/Level',
-        accessed:'Pedro Penduko',
-        created:'Admin',
-                 
-     },
-     
-     ]
+        accreditors:[
+          { id:1,
+            firstName:'Aldrin',
+            lastName:'Lobis',
+            middleName:'Belleza',
+            accreditorEmail:'aldrin@gmail.com',
+            roleDescription:'External',
+            contactNumber:'0912345678',
+          },
+          { id:2,
+            firstName:'Juan',
+            lastName:'Tamad',
+            middleName:'Katalaga',
+            accreditorEmail:'tamad@gmail.com',
+            roleDescription:'Internal',
+            contactNumber:'09234345678',
+          }
+        ],
+     folderArea:'',
     }
 
   },
   methods:{
+    edit_update(e){
+      let index=this.accreditors.findIndex(x => x.id===e)
+      this.fname=this.accreditors[index].firstName;
+      this.lname=this.accreditors[index].lastName;
+      this.mname=this.accreditors[index].middleName;
+      this.email=this.accreditors[index].accreditorEmail;
+      this.cnumber=this.accreditors[index].contactNumber;
+    },
     routing(e){
       this.$router.push(e)
     },
      function_reset(){
        document.getElementById('task_force_form').reset();
+      this.fname='';
+      this.lname='';
+      this.mname='';
+      this.email='';
+      this.cnumber='';
      },
     show_default(){
          let prev_f=document.getElementById(this.prev_folder_id)

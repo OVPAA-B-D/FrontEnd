@@ -60,10 +60,10 @@
       </div>
     </div>
     <div class="flex flex-col flex-nowrap   w-full">
-      <div class="w-full cursor-default h-72 relative shadow-lg pl-4 pt-7">
+      <div  class="w-full cursor-default h-72 relative shadow-lg pl-4 pt-7">
         <img src="img/img3.jpg" class=" object-cover absolute  top-0 left-0 w-full h-full -z-1" />
         <div class="flex items-center justify-between pr-5">
-        <h1 class="text-2xl text-blue-150 font-normal">Accreditation Management/<a class="font-bold">Information Technology</a></h1>
+        <h1 class="text-2xl text-blue-150 font-normal">Accreditation Management/<a class="font-bold"></a></h1>
         </div>
       <div class="pb-3">
         <h1 class="text-yellow-150 text-xl">Level 1 Accreditation</h1>
@@ -180,21 +180,21 @@
                       <div>
                         <h1 class="text-blue-150 text-sm">Firstname</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="fname" type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                         <div>
                         <h1 class="text-blue-150 text-sm">Email</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="email" type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                       <div>
                         <h1 class="text-blue-150 text-sm">Middle name</h1>
                         <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input  type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required :value="mname" type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                       </div>
@@ -211,14 +211,14 @@
                        <div>
                         <h1 class="text-blue-150 text-sm">Last name</h1>
                           <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required type="text"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required type="text" :value="lname"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
                        <div>
                         <h1 class="text-blue-150 text-sm">Contact Number</h1>
                           <div class=" bg-gradient-to-b p-0.5 rounded-md from-blue-150 to-yellow-150">
-                        <input required  type="number"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
+                        <input required  type="number" :value="cnumber"  class="italic  text-blue-150 w-75 px-4 rounded-sm  h-12 
                         focus:outline-none cursor-text "/>
                        </div>
                        </div>
@@ -258,15 +258,15 @@
                   <div class="flex flex-col px-10">
                   <h1 class="text-lg text-blue-150 font-bold">Task Force</h1>
                   <div class="overflow-y-auto h-28 gap-y-4 flex flex-col ">
-                       <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-start gap-x-4 w-3  /4 pr-10">
-                            <h1 class="text-sm text-blue-150">Aldrin Lobis</h1>
-                            <h1 class="text-sm text-yellow-150">aldrinlobis@gmail.com</h1>
-                            <h1 class="text-sm text-yellow-150">Member</h1>
-                            <h1 class="text-sm text-yellow-150">09021050501</h1>
+                       <div v-for="taskforcex in taskforce" :key="taskforcex.id" class=" border-b-2 border-yellow-150 flex justify-between">
+                        <div class="flex justify-start gap-x-4 w-3/4 pr-10">
+                           <h1 class="text-lg text-blue-150">{{taskforcex.firstName}} {{taskforcex.lastName}}</h1>
+                            <h1 class="text-lg text-yellow-150">{{taskforcex.taskforceEmail}}</h1>
+                            <h1 class="text-lg text-yellow-150">{{taskforcex.roleDescription}}</h1>
+                            <h1 class="text-lg text-yellow-150">{{taskforcex.contactNumber}}</h1>
                         </div>   
                         <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
+                            <button v-if="disabling_btn" @click="edit_update(taskforcex.id),update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
                             <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
                             
                             <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
@@ -275,54 +275,6 @@
                         </div>
                         </div>
                           
-                        
-                         <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                            
-                        </div>   
-                        <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
-                            
-                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
-                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
-                       
-                        </div>
-                        </div>
-                        <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                        </div>   
-                            <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
-                            
-                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
-                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
-                       
-                        </div>
-                        </div>
-                           <div class=" border-b-2 border-yellow-150 flex justify-between">
-                        <div class="flex justify-between gap-x-10 w-3/4 pr-10">
-                            <h1 class="text-lg text-blue-150">Name</h1>
-                            <h1 class="text-lg text-yellow-150">Email</h1>
-                            <h1 class="text-lg text-yellow-150">Role</h1>
-                            
-                        </div>   
-                        <div >                     
-                            <button v-if="disabling_btn" @click="update_button=!update_button,disabling_btn=!disabling_btn"  class=" w-20  text-white border-2 bg-blue-150">Edit</button>
-                            <button v-else   class=" w-20  text-white border-2 bg-gray-400">Edit</button>
-                            
-                            <button v-if="disabling_btn" @click="confirmation_deletion=!confirmation_deletion" class=" w-20  text-white border-2 bg-red-150">Delete</button>
-                            <button v-else class=" w-20  text-white border-2 bg-gray-400">Delete</button>
-                       
-                        </div>
-                        </div>
                   </div>
                   </div>
                   
@@ -386,6 +338,10 @@
 // @ is an alias to /src
 import Details from './details.vue'
 export default {
+  name:'Program Level',
+  props:{
+    msg:Object
+  },
   components:{
 Details,
   },
@@ -399,9 +355,34 @@ Details,
         update_button:true,
         link_to:'',
         activeBtn:0,
+        welcome:'',
         disabling_btn:true,
         text_modal:'',
+        fname:'',
+        lname:'',
+        mname:'',
+        email:'',
+        cnumber:'',
         index:'',
+         taskforce:[
+          { id:1,
+            firstName:'Aldrin',
+            lastName:'Lobis',
+            middleName:'Belleza',
+            taskforceEmail:'aldrin@gmail.com',
+            roleDescription:'Member',
+            contactNumber:'0912345678',
+          },
+          { id:2,
+            firstName:'Juan',
+            lastName:'Tamad',
+            middleName:'Katalaga',
+            taskforceEmail:'tamad@gmail.com',
+            roleDescription:'Chairman',
+            contactNumber:'09234345678',
+          }
+          
+        ],
         items:['first'],
         folder_details:[
           {
@@ -475,13 +456,27 @@ Details,
         location:'/Information/Level',
         accessed:'Coco A. Martin',
         created:'Admin',
-                 
+
      },
      
      ]
     }
   },
+  mounted(){
+      if(this.msg){
+        this.welcome=this.msg
+        console.log(this.welcome)
+      }
+  },
   methods:{
+     edit_update(e){
+      let index=this.taskforce.findIndex(x => x.id===e)
+      this.fname=this.taskforce[index].firstName;
+      this.lname=this.taskforce[index].lastName;
+      this.mname=this.taskforce[index].middleName;
+      this.email=this.taskforce[index].taskforceEmail;
+      this.cnumber=this.taskforce[index].contactNumber;
+    },
     routing(){
         this.$router.push('/program_area')
     },
@@ -493,7 +488,12 @@ Details,
          this.index=this.folderArea.findIndex(x => x.id===e)
      },
      function_reset(){
-       document.getElementById('task_force_form').reset();
+      document.getElementById('task_force_form').reset();
+      this.fname='';
+      this.lname='';
+      this.mname='';
+      this.email='';
+      this.cnumber='';
      },
      detailing(){ 
        this.folder_details[0].folder_name=this.folderArea[this.index].folder_name
